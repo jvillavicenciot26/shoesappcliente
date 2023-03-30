@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoesappclient/models/brand_model.dart';
 import 'package:shoesappclient/models/product_model.dart';
 import 'package:shoesappclient/services/remote/firestore_service.dart';
 import 'package:shoesappclient/ui/general/brand_color.dart';
@@ -28,17 +27,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: FutureBuilder(
-          future: Future.wait(
-            [
-              firestoreService.getProducts(),
-              firestoreService.getBrands(),
-            ],
-          ), //firestoreService.getProducts(),
+          future: firestoreService.getProducts(),
+          // Future.wait(
+          //   // [
+          //   //   firestoreService.getProducts(),
+          //   //   firestoreService.getBrands(),
+          //   // ],
+          // ),
           builder: (BuildContext context, AsyncSnapshot snap) {
             //print(snap.hasData);
             if (snap.hasData) {
-              List<ProductModel> products = snap.data[0];
-              List<BrandModel> brands = snap.data[1];
+              List<ProductModel> products = snap.data; //[0];
+              //List<BrandModel> brands = snap.data[1];
               //print(snap.data[1]);
               List<ProductModel> productsDiscount = [];
 
@@ -84,13 +84,20 @@ class HomePage extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               physics: BouncingScrollPhysics(),
                               child: Row(
-                                children: productsDiscount
-                                    .map(
-                                      (e) => ItemOfferWidget(
-                                        model: e,
-                                      ),
-                                    )
-                                    .toList(),
+                                children: productsDiscount.map(
+                                  (e) {
+                                    // String idBrand = e.brand;
+                                    // String newBrand = brands
+                                    //     .where(
+                                    //         (element) => element.id == idBrand)
+                                    //     .first
+                                    //     .name;
+                                    // e.brand = newBrand;
+                                    return ItemOfferWidget(
+                                      model: e,
+                                    );
+                                  },
+                                ).toList(),
                                 // [
                                 //   ItemOfferWidget(),
                                 //   ItemOfferWidget(),
@@ -150,6 +157,15 @@ class HomePage extends StatelessWidget {
                       ),
                       itemCount: products.length,
                       itemBuilder: (BuildContext context, int index) {
+                        // String idBrand = products[index].brand;
+
+                        // String newBrand = brands
+                        //     .where((element) => element.id == idBrand)
+                        //     .first
+                        //     .name;
+
+                        // products[index].brand = newBrand;
+
                         return ItemProductsWidget(
                           model: products[index],
                         );

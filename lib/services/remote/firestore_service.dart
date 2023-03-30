@@ -12,18 +12,20 @@ class FirestoreService {
     List<QueryDocumentSnapshot> docs = collection.docs;
     List<ProductModel> products = [];
 
-    products = docs
-        .map((e) => ProductModel.fromJson(e.data() as Map<String, dynamic>))
-        .toList(); // igual a linea 18
+    List<BrandModel> brands = await getBrands();
 
-    // for (QueryDocumentSnapshot item in docs) {
-    //   //print(item);
-    //   //print(item.id);
-    //   ProductModel product =
-    //       ProductModel.fromJson(item.data() as Map<String, dynamic>);
-    //   //print(product);
-    //   products.add(product);
-    // }
+    // products = docs
+    //     .map((e) => ProductModel.fromJson(e.data() as Map<String, dynamic>))
+    //     .toList(); // igual a linea 18
+
+    for (QueryDocumentSnapshot item in docs) {
+      ProductModel product =
+          ProductModel.fromJson(item.data() as Map<String, dynamic>);
+      String newBrand =
+          brands.where((element) => element.id == product.brand).first.name;
+      product.brand = newBrand;
+      products.add(product);
+    }
     return products;
   }
 
