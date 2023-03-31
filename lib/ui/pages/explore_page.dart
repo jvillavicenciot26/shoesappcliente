@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoesappclient/models/product_model.dart';
 import 'package:shoesappclient/services/remote/firestore_service.dart';
 import 'package:shoesappclient/ui/general/brand_color.dart';
+import 'package:shoesappclient/ui/search/search_product.dart';
 import 'package:shoesappclient/ui/widgets/common_text.dart';
 import 'package:shoesappclient/ui/widgets/common_widget.dart';
 import 'package:shoesappclient/ui/widgets/item_products_widget.dart';
@@ -30,6 +31,11 @@ class ExplorePage extends StatelessWidget {
                   toolbarHeight: 90.0,
                   shadowColor: BrandColor.primaryColor,
                   title: TextField(
+                    onTap: () async {
+                      await showSearch(
+                          context: context,
+                          delegate: SearchProduct(products: products));
+                    },
                     cursorColor: BrandColor.secondaryFontColor,
                     style: const TextStyle(
                       fontSize: 14.0,
