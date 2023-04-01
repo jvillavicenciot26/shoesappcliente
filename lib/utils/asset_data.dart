@@ -5,6 +5,10 @@ class AssetData {
   static const iconFavorite = "assets/icons/heart.svg";
   static const iconProfile = "assets/icons/profile.svg";
   static const iconWhatsapp = "assets/icons/whatsapp.svg";
+  static const iconMail = "assets/icons/mail.svg";
+  static const iconLock = "assets/icons/lock.svg";
+  static const iconFacebook = "assets/icons/facebook.svg";
+  static const iconGoogle = "assets/icons/google.svg";
 
   static const imagePlaceHolder = "assets/images/placeholder.png";
 }

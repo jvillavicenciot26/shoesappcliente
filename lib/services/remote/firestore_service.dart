@@ -49,4 +49,26 @@ class FirestoreService {
 
     return brands;
   }
+
+  getProductsByBrand() async {
+    CollectionReference reference =
+        FirebaseFirestore.instance.collection("products");
+    QuerySnapshot collection =
+        await reference.where("brand", isEqualTo: "ml2gcBlG7m1LX1Pufo9N").get();
+
+    List<QueryDocumentSnapshot> docs = collection.docs;
+    List<ProductModel> products = [];
+
+    List<BrandModel> brands = await getBrands();
+    for (QueryDocumentSnapshot item in docs) {
+      ProductModel product =
+          ProductModel.fromJson(item.data() as Map<String, dynamic>);
+      String newBrand =
+          brands.where((element) => element.id == product.brand).first.name;
+      product.brand = newBrand;
+      products.add(product);
+    }
+
+    return products;
+  }
 }

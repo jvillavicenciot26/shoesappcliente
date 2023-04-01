@@ -6,26 +6,33 @@ import 'package:shoesappclient/utils/asset_data.dart';
 
 class ItemBrandWidget extends StatelessWidget {
   BrandModel brand;
+  VoidCallback onTap;
 
-  ItemBrandWidget({required this.brand});
+  ItemBrandWidget({
+    required this.brand,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //margin: EdgeInsets.all(8.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: CachedNetworkImage(
-          imageUrl: brand.image,
-          errorWidget: (context, url, error) {
-            return Image.asset(
-              AssetData.imagePlaceHolder,
-            );
-          },
-          fit: BoxFit.cover,
-          progressIndicatorBuilder: (context, url, progress) {
-            return loadingWidget;
-          },
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        //margin: EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: CachedNetworkImage(
+            imageUrl: brand.image,
+            errorWidget: (context, url, error) {
+              return Image.asset(
+                AssetData.imagePlaceHolder,
+              );
+            },
+            fit: BoxFit.cover,
+            progressIndicatorBuilder: (context, url, progress) {
+              return loadingWidget;
+            },
+          ),
         ),
       ),
     );

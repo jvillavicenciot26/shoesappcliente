@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoesappclient/models/brand_model.dart';
 import 'package:shoesappclient/services/remote/firestore_service.dart';
+import 'package:shoesappclient/ui/pages/brand_filter_page.dart';
 import 'package:shoesappclient/ui/widgets/common_text.dart';
 import 'package:shoesappclient/ui/widgets/common_widget.dart';
 import 'package:shoesappclient/ui/widgets/item_brand_widget.dart';
@@ -37,7 +38,16 @@ class BrandPage extends StatelessWidget {
                     mainAxisSpacing: 10,
                     children: brands
                         .map(
-                          (e) => ItemBrandWidget(brand: e),
+                          (e) => ItemBrandWidget(
+                            brand: e,
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    BrandFilterPage(model: e),
+                              ),
+                            ),
+                          ),
                         )
                         .toList(),
                     // [
