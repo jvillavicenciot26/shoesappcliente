@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoesappclient/models/product_model.dart';
+import 'package:shoesappclient/services/local/sp_global.dart';
 import 'package:shoesappclient/services/remote/firestore_service.dart';
 import 'package:shoesappclient/ui/general/brand_color.dart';
 import 'package:shoesappclient/ui/widgets/common_text.dart';
@@ -72,7 +73,8 @@ class HomePage extends StatelessWidget {
                             spacing30,
                             H1(
                               text:
-                                  "Hola José Daniel Diaz, bienvenido nuevamente.",
+                                  "Hola, ${SPGlobal().fullName}, bienvenido nuevamente.",
+                              //"Hola José Daniel Diaz, bienvenido nuevamente.",
                               height: 1.15,
                             ),
                             spacing8,

@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesappclient/ui/pages/init_page.dart';
+import 'package:shoesappclient/services/local/sp_global.dart';
 import 'package:shoesappclient/ui/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SPGlobal prefs = SPGlobal();
+  await prefs.initSharedPreferences();
   await Firebase.initializeApp();
   runApp(MyApp());
 }

@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shoesappclient/ui/general/brand_color.dart';
+import 'package:shoesappclient/ui/widgets/common_text.dart';
+import 'package:shoesappclient/utils/responsive.dart';
 
 SizedBox spacing2 = const SizedBox(height: 2);
 SizedBox spacing4 = const SizedBox(height: 4);
@@ -27,3 +32,58 @@ Center loadingWidget = const Center(
     ),
   ),
 );
+
+Stack backgroundWidget(BuildContext context) => Stack(
+      children: [
+        Positioned(
+          top: -ResponsiveUI.pDiagonal(context, 0.15),
+          left: -ResponsiveUI.pDiagonal(context, 0.05),
+          child: Stack(
+            children: [
+              Transform.rotate(
+                angle: pi / 3.5,
+                child: Container(
+                  height: ResponsiveUI.pDiagonal(context, 0.4),
+                  width: ResponsiveUI.pDiagonal(context, 0.4),
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(90.0),
+                    gradient: LinearGradient(
+                      colors: [
+                        BrandColor.secondaryFontColor,
+                        BrandColor.primaryColor,
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: BrandColor.primaryColor.withOpacity(0.05),
+                        blurRadius: 12.0,
+                        offset: Offset(6, 6),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+SnackBar snackBarError(String message) => SnackBar(
+      backgroundColor: Colors.redAccent,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      content: Row(
+        children: [
+          Expanded(
+            child: H5(
+              text: message,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );

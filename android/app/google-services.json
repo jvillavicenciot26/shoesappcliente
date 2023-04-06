@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "310360310969-vccm0st0gumlu1848minn7grrunf9oao.apps.googleusercontent.com",
+          "client_id": "310360310969-c01dr8jt83o2mok86qnl483017617ll7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.codigo.shoesapp",
+            "certificate_hash": "90c7e8a2b4cf29227a05881fd60095d94035a533"
+          }
+        },
+        {
+          "client_id": "310360310969-pfe3t7glui08t99cb5qca1avuevmq6jf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "310360310969-vccm0st0gumlu1848minn7grrunf9oao.apps.googleusercontent.com",
+              "client_id": "310360310969-pfe3t7glui08t99cb5qca1avuevmq6jf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
@@ -50,7 +58,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "310360310969-vccm0st0gumlu1848minn7grrunf9oao.apps.googleusercontent.com",
+          "client_id": "310360310969-pfe3t7glui08t99cb5qca1avuevmq6jf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -63,7 +71,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "310360310969-vccm0st0gumlu1848minn7grrunf9oao.apps.googleusercontent.com",
+              "client_id": "310360310969-pfe3t7glui08t99cb5qca1avuevmq6jf.apps.googleusercontent.com",
               "client_type": 3
             },
             {

@@ -4,6 +4,7 @@ import 'package:shoesappclient/ui/general/brand_color.dart';
 import 'package:shoesappclient/ui/pages/brand_page.dart';
 import 'package:shoesappclient/ui/pages/explore_page.dart';
 import 'package:shoesappclient/ui/pages/home_page.dart';
+import 'package:shoesappclient/ui/pages/profile_page.dart';
 import 'package:shoesappclient/utils/asset_data.dart';
 
 class InitPage extends StatefulWidget {
@@ -21,9 +22,7 @@ class _InitPageState extends State<InitPage> {
     Center(
       child: Text("Favoritos"),
     ),
-    Center(
-      child: Text("Perfil"),
-    ),
+    ProfilePage(),
   ];
 
   @override

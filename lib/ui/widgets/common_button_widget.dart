@@ -7,8 +7,14 @@ class CommonButtonWidget extends StatelessWidget {
   String text;
   Color color;
   String? icon;
+  VoidCallback onPressed;
 
-  CommonButtonWidget({required this.text, required this.color, this.icon});
+  CommonButtonWidget({
+    required this.text,
+    required this.color,
+    this.icon,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class CommonButtonWidget extends StatelessWidget {
       height: 48,
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: onPressed,
         icon: icon != null
             ? SvgPicture.asset(
                 icon!,

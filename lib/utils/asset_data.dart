@@ -9,6 +9,8 @@ class AssetData {
   static const iconLock = "assets/icons/lock.svg";
   static const iconFacebook = "assets/icons/facebook.svg";
   static const iconGoogle = "assets/icons/google.svg";
+  static const iconUser = "assets/icons/user.svg";
+  static const iconPhone = "assets/icons/phone.svg";
 
   static const imagePlaceHolder = "assets/images/placeholder.png";
 }

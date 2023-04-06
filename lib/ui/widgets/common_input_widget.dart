@@ -4,15 +4,30 @@ import 'package:shoesappclient/ui/general/brand_color.dart';
 import 'package:shoesappclient/ui/widgets/common_text.dart';
 import 'package:shoesappclient/ui/widgets/common_widget.dart';
 import 'package:shoesappclient/utils/asset_data.dart';
+import 'package:shoesappclient/utils/types.dart';
 
 class CommonInputWidget extends StatelessWidget {
+  String label;
+  String hintText;
+  String icon;
+  TextEditingController controller;
+  InputTypeEnum inputType;
+
+  CommonInputWidget({
+    required this.label,
+    required this.hintText,
+    required this.icon,
+    required this.controller,
+    required this.inputType,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         H5(
-          text: "  Correo Electronico",
+          text: "  $label",
           fontWeight: FontWeight.w600,
         ),
         spacing8,
@@ -27,21 +42,29 @@ class CommonInputWidget extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            controller: controller,
+            keyboardType: inputType == InputTypeEnum.phone
+                ? TextInputType.phone
+                : inputType == InputTypeEnum.email
+                    ? TextInputType.emailAddress
+                    : TextInputType.text,
+            maxLength: inputType == InputTypeEnum.phone ? 9 : null,
             decoration: InputDecoration(
+              counterText: "",
               prefixIcon: SvgPicture.asset(
-                AssetData.iconMail,
+                icon,
                 fit: BoxFit.scaleDown,
                 height: 20.0,
                 color: BrandColor.primaryFontColor.withOpacity(0.60),
               ),
-              hintText: "Tu correo electronico",
+              hintText: hintText,
               hintStyle: TextStyle(
                 fontSize: 14.0,
                 color: BrandColor.primaryFontColor.withOpacity(0.6),
               ),
               filled: true,
               fillColor: Colors.white,
-              contentPadding: EdgeInsets.symmetric(
+              contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 12.0,
               ),
@@ -62,6 +85,12 @@ class CommonInputWidget extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
             ),
+            validator: (String? value) {
+              if (value != null && value.isEmpty) {
+                return "Campo obligatorio";
+              }
+              return null;
+            },
           ),
         ),
       ],

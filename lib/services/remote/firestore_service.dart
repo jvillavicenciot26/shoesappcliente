@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shoesappclient/models/brand_model.dart';
 import 'package:shoesappclient/models/product_model.dart';
+import 'package:shoesappclient/models/user_model.dart';
 
 class FirestoreService {
   Future<List<ProductModel>> getProducts() async {
@@ -50,7 +52,7 @@ class FirestoreService {
     return brands;
   }
 
-  getProductsByBrand() async {
+  Future<List<ProductModel>> getProductsByBrand() async {
     CollectionReference reference =
         FirebaseFirestore.instance.collection("products");
     QuerySnapshot collection =
@@ -70,5 +72,27 @@ class FirestoreService {
     }
 
     return products;
+  }
+
+  Future<String> registerUser(UserModel model) async {
+    CollectionReference userReference =
+        FirebaseFirestore.instance.collection("users");
+
+    DocumentReference doc = await userReference.add(model.toJson());
+    print(doc.id);
+    return doc.id;
+  }
+
+  Future<UserModel?> getUser(String email) async {
+    CollectionReference userReference =
+        FirebaseFirestore.instance.collection("users");
+    QuerySnapshot collection =
+        await userReference.where("email", isEqualTo: email).get();
+    if (collection.size > 0) {
+      QueryDocumentSnapshot doc = collection.docs.first;
+      UserModel model = UserModel.fromJson(doc.data() as Map<String, dynamic>);
+      return model;
+    }
+    return null;
   }
 }
