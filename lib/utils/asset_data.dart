@@ -13,4 +13,9 @@ class AssetData {
   static const iconPhone = "assets/icons/phone.svg";
 
   static const imagePlaceHolder = "assets/images/placeholder.png";
+  static const imageTag = "assets/images/imageTag.png";
+  static const imageProducts = "assets/images/imageShoes.png";
+  static const imageClient = "assets/images/client.png";
+  static const imageReports = "assets/images/report.png";
+  static const imageChart = "assets/images/chart.png";
 }
