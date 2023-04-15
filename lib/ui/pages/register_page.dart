@@ -62,11 +62,12 @@ class _RegisterPageState extends State<RegisterPage> {
             SPGlobal().email = email.text;
             isLoading = false;
             setState(() {});
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => InitPage(),
               ),
+              (route) => false,
             );
           }
         }

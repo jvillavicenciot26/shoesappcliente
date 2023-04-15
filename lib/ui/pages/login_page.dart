@@ -54,11 +54,12 @@ class _LoginPageState extends State<LoginPage> {
             isLoading = false;
             setState(() {});
             //ignore: use_build_context_synchronously
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => InitPage(),
               ),
+              (route) => false,
             );
           }
         }

@@ -25,16 +25,10 @@ class ProductAdminPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProductFormAdminPage(),
-            ),
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ProductFormAdminPage()));
         },
-        child: Icon(
-          Icons.add,
-        ),
+        child: const Icon(Icons.add),
         backgroundColor: BrandColor.secondaryColor,
       ),
       body: StreamBuilder(
@@ -43,33 +37,45 @@ class ProductAdminPage extends StatelessWidget {
           if (snap.hasData) {
             QuerySnapshot collection = snap.data;
             List<QueryDocumentSnapshot> docs = collection.docs;
+
             return ListView.builder(
               itemCount: docs.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data =
                     docs[index].data() as Map<String, dynamic>;
+
                 ProductModel product = ProductModel.fromJson(data);
+                product.id = docs[index].id;
+
                 return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductFormAdminPage(
+                          productModel: product,
+                        ),
+                      ),
+                    );
+                  },
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: CachedNetworkImage(
                       imageUrl: product.image,
-                      height: 90.0,
-                      width: 105.0,
+                      height: 46.0,
+                      width: 46.0,
                       fit: BoxFit.cover,
-                      errorWidget: ((context, url, error) {
+                      errorWidget: (context, url, error) {
                         return Image.asset(
                           AssetData.imagePlaceHolder,
                         );
-                      }),
+                      },
                       progressIndicatorBuilder: (context, url, progress) {
                         return loadingWidget;
                       },
                     ),
                   ),
-                  title: H5(
-                    text: product.name,
-                  ),
+                  title: H5(text: product.name),
                   trailing: Icon(
                     Icons.chevron_right,
                     color: BrandColor.primaryFontColor.withOpacity(0.4),

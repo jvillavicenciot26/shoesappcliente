@@ -95,4 +95,17 @@ class FirestoreService {
     }
     return null;
   }
+
+  Future<String> registerProduct(ProductModel product) async {
+    CollectionReference productReference =
+        FirebaseFirestore.instance.collection("products");
+    DocumentReference doc = await productReference.add(product.toJson());
+    return doc.id;
+  }
+
+  Future<void> updateProduct(ProductModel model) async {
+    CollectionReference productReference =
+        FirebaseFirestore.instance.collection("products");
+    await productReference.doc(model.id).update(model.toJson());
+  }
 }

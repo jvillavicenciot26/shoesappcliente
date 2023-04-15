@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shoesappclient/ui/pages/admin/dashboard_admin_page.dart';
 import 'package:shoesappclient/ui/pages/admin/product_admin_page.dart';
+import 'package:shoesappclient/ui/pages/admin/reports_admin_page.dart';
 import 'package:shoesappclient/ui/widgets/admin/item_menu_widget.dart';
 import 'package:shoesappclient/ui/widgets/common_text.dart';
 import 'package:shoesappclient/ui/widgets/common_widget.dart';
@@ -61,12 +63,23 @@ class HomeAdminPage extends StatelessWidget {
                         ItemMenuWidget(
                           text: "Reportes",
                           icon: AssetData.imageReports,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ReportAdminPage()));
+                          },
                         ),
                         ItemMenuWidget(
                           text: "Dashboard",
                           icon: AssetData.imageChart,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DashboardAdminPage()));
+                          },
                         ),
                       ],
                     ),

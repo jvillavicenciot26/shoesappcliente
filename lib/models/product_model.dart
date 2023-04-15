@@ -1,4 +1,5 @@
 class ProductModel {
+  String? id;
   String name;
   double price;
   String image;
@@ -9,6 +10,7 @@ class ProductModel {
   List<double> sizes;
 
   ProductModel({
+    this.id,
     required this.name,
     required this.price,
     required this.image,
@@ -27,7 +29,9 @@ class ProductModel {
         status: json["status"] ?? false,
         stock: json["stock"] ?? 0,
         brand: json["brand"] ?? "",
-        sizes: List<double>.from(json["sizes"].map((e) => e.toDouble())),
+        sizes: json["sizes"] != null
+            ? List<double>.from(json["sizes"].map((e) => e.toDouble()))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
